@@ -1,17 +1,16 @@
 def solution(s):
     
     count = 0
-    result = True
     
-    for temp in s:
-        if temp == '(':
+    for p in s:
+        if p == "(":
             count += 1
         else:
             count -= 1
-        if count < 0:
-            result = False
-            break
+        if (count < 0):
+            return False
+    
     if count != 0:
-        result = False
-
-    return result
+        return False
+        
+    return True
