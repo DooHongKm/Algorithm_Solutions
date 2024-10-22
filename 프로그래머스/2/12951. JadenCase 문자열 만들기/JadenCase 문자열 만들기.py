@@ -1,10 +1,3 @@
-def solution(s):
-    
-    result = ""
-    temp = s.split(' ')
 
-    for t in temp:
-        result += t.capitalize() + ' '
-    result = result[:-1]
-    
-    return result
+def solution(s):
+    return ' '.join([word.capitalize() for word in s.split(" ")])
