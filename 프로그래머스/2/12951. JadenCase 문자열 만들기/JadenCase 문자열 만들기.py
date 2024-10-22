@@ -1,3 +1,7 @@
-
 def solution(s):
-    return ' '.join([word.capitalize() for word in s.split(" ")])
+    
+    
+    words = s.split(" ")
+    answer = " ".join([word.capitalize() for word in words])
+        
+    return answer
