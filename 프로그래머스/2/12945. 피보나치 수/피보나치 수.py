@@ -1,10 +1,11 @@
 def solution(n):
-    
-    fibonacci = [0, 1]
-    for _ in range(n - 1):
-        temp = fibonacci[-2] + fibonacci[-1]
-        fibonacci.append(temp)
-    
-    answer = fibonacci[-1] % 1234567
 
-    return answer
+    f = [0, 1]
+        
+    for i in range(n):
+        f.append(f[i] + f[i + 1])
+    
+    
+    
+
+    return f[n] % 1234567
