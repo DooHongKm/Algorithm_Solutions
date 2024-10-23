@@ -1,21 +1,17 @@
 def solution(s):
     
-    stack = []
-    s = list(s)
-    stack.append(s.pop())
-    
-    while True:
-        if len(s) == 0:
-            break
-        temp = s.pop()
-        if len(stack) == 0:
-            stack.append(temp)
-        elif stack[-1] == temp:
-            stack.pop()
+    stack = [s[0]]
+    s = s[1:]
+    for a in s:
+        if len(stack) > 0:
+            if a == stack[-1]:
+                stack.pop()
+            else:
+                stack.append(a)
         else:
-            stack.append(temp)
-    
+            stack.append(a)
+            
     if len(stack) == 0:
         return 1
-    else:
-        return 0
+    return 0
+                
