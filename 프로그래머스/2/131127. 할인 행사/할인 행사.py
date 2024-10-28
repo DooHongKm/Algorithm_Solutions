@@ -1,21 +1,26 @@
 def solution(want, number, discount):
-    
-    answer = 0
-    
-    table = [[0 for _ in range(len(discount) + 1)] for _ in range(len(want))]
-    for i in range(len(discount)):
-        for j in range(len(want)):
-            if discount[i] == want[j]:
-                for k in range(max(1, i - 8), i + 2):
-                    table[j][k] += 1
-                break
-    
-    for i in range(1, len(table[0])):
-        for j in range(len(want)):
-            if table[j][i] != number[j]:
-                break
-            if j == len(want) - 1:
-                answer += 1
-                break
-    
-    return answer
+
+    dict1 = {}
+    for i in range(len(want)):
+        dict1[want[i]] = number[i]
+        
+    count = 0
+        
+    for i in range(len(discount) - 9):
+        dict2 = {}
+        for j in range(10):
+            if discount[i+j] in dict2:
+                dict2[discount[i+j]] += 1
+            else:
+                dict2[discount[i+j]] = 1
+        if dict1 == dict2:
+            count += 1
+            
+    return count
+        
+
+            
+
+            
+            
+        
