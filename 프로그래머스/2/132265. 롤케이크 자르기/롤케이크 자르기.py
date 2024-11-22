@@ -1,18 +1,18 @@
 from collections import Counter
 
-
 def solution(topping):
     
     answer = 0
     
-    big = Counter(topping)
-    small = set()
+    a = Counter(topping)
+    b = {}
+    
     for t in topping:
-        big[t] -= 1
-        if big[t] == 0:
-            big.pop(t)
-        small.add(t)
-        if len(big) == len(small):
+        a[t] -= 1
+        b[t] = 1
+        if a[t] == 0:
+            a.pop(t)
+        if len(a) == len(b):
             answer += 1
-
+            
     return answer
