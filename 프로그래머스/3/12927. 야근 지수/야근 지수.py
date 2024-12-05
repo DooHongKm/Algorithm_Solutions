@@ -1,34 +1,23 @@
+    # heapify(works := [-i for i in works])
+    # for i in range(min(n, abs(sum(works)))):
+    #     heappush(works, heappop(works)+1)
+    # return sum([i*i for i in works])
+
+from heapq import heapify, heappush, heappop
+
 def solution(n, works):
     
-    result = 0
-    
-    rWork = 0
-    rTime = 0
-    sum_ = (sum(works) - n) // len(works)
-    if sum_ < 0:
+    if sum(works) < n:
         return 0
     
-    for i in range(sum_, max(works) + 1):
-        count = 0
-        for work in works:
-            if work > i:
-                count += work - i
-        if n >= count:
-            rWork = i
-            rTime = n - count
-            break
-            
-    works.sort(reverse=True)
-    for work in works:
-        temp = rWork
-        if work < rWork:
-            temp = work
-        if temp > 0 and rTime > 0:
-            result += (temp - 1) ** 2
-            rTime -= 1
-        else:
-            result += temp ** 2
-            
-    return result
-        
+    works = [-work for work in works]
+    heapify(works)
     
+    for i in range(n):
+        heappush(works, heappop(works) + 1)
+        
+    result = 0
+    for work in works:
+        result += work ** 2
+        
+    return result
