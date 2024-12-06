@@ -1,20 +1,19 @@
 def solution(skill, skill_trees):
     
-    count = 0
+    answer = len(skill_trees)
     
-    dic = {}
-    for i, s in enumerate(skill):
-        dic[s] = i
-    
-    for tree in skill_trees:
-        temp = 0
-        for t in tree:
-            if t in dic and dic[t] != temp:
-                count += 1
+    for skill_tree in skill_trees:
+        temp = ""
+        for s in skill_tree:
+            if s in skill:
+                temp += s
+        idx = 0
+        for t in temp:
+            if t == skill[idx]:
+                idx += 1
+            else:
+                answer -= 1
                 break
-            elif t in dic and dic[t] == temp:
-                temp += 1
                 
-    answer = len(skill_trees) - count
-    
     return answer
+            
