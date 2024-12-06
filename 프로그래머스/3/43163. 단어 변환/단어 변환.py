@@ -1,23 +1,25 @@
+from collections import deque
+
 def solution(begin, target, words):
+
+    def check(word1, word2):
+        count = 0
+        for i in range(len(word1)):
+            if word1[i] != word2[i]:
+                count += 1
+        return count == 1
     
-    answer = 0
-    stack = [(0, begin)]
-    used = []
-    
-    while stack:
-        idx, cur = stack.pop()
+    answer = float("inf")
+    queue = deque([(0, begin, set())])
+    while queue:
+        idx, cur, used = queue.popleft()
         if cur == target:
-            if answer == 0:
-                answer = idx
-            else:
-                answer = min(answer, idx)
+            return idx
         for word in words:
-            count = 0
-            for i, w in enumerate(word):
-                if w != cur[i]:
-                    count += 1
-            if count == 1 and word not in used:
-                stack.append((idx + 1, word))
-                used.append(word)
+            if check(cur, word) and word not in used:
                 
-    return answer   
+                queue.append((idx+1, word, used|{word}))
+                
+    return 0
+    
+    
